@@ -156,7 +156,7 @@ export const TOPICS_BY_SUBJECT: Record<string, Record<number, Topic[]>> = {
         description: "Introduction to variables and simple algebraic expressions",
         classLevel: 6,
         notes:
-          "Algebra is a fundamental branch of mathematics that uses letters, called variables, to represent unknown numbers. This topic introduces the idea of using these variables to solve problems. Students learn to translate real-world word problems into algebraic expressions. They then solve simple, one-step equations to find the value of the variable. For instance, in the equation x+3=7, they'll learn that the variable x has a value of 4. This lays the essential groundwork for the more complex algebra and problem-solving skills they'll use throughout their academic careers.",
+          "Algebra is fundamental branch of mathematics that uses letters, called variables, to represent unknown numbers. This topic introduces the idea of using these variables to solve problems. Students learn to translate real-world word problems into algebraic expressions. They then solve simple, one-step equations to find the value of the variable. For instance, in the equation x+3=7, they'll learn that the variable x has a value of 4. This lays the essential groundwork for the more complex algebra and problem-solving skills they'll use throughout their academic careers.",
           subjectId: "math"
       },
     ],
