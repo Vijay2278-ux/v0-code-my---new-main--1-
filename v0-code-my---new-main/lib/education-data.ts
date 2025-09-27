@@ -100,6 +100,7 @@ export const TOPICS_BY_SUBJECT: Record<string, Record<number, Topic[]>> = {
         classLevel: 6,
         notes:
           "Fractions represent parts of a whole. A fraction has a numerator (top number) and denominator (bottom number). Decimals are another way to represent fractions. For example, 1/2 = 0.5, 1/4 = 0.25, and 3/4 = 0.75. Converting between fractions and decimals helps in solving real-world problems involving measurements, money, and proportions. links for improve learning = https://www.youtube.com/watch?v=qesj2jpktaE",
+          subjectId: "math"
       },
       {
         id: "basic-geometry",
@@ -108,6 +109,7 @@ export const TOPICS_BY_SUBJECT: Record<string, Record<number, Topic[]>> = {
         classLevel: 6,
         notes:
           "Geometry deals with shapes, sizes, and properties of figures. Basic shapes include triangles, squares, rectangles, and circles. Angles are measured in degrees, with a right angle being 90°, acute angles less than 90°, and obtuse angles greater than 90°. Understanding perimeter (distance around a shape) and area (space inside a shape) is fundamental for solving geometric problems.",
+          subjectId: "math"
       },
       {
         id: "integers",
@@ -116,6 +118,8 @@ export const TOPICS_BY_SUBJECT: Record<string, Record<number, Topic[]>> = {
         classLevel: 6,
         notes:
           "Integers include all positive numbers, negative numbers, and zero (...-3, -2, -1, 0, 1, 2, 3...). They are used to represent quantities that can go in opposite directions, like temperature above and below zero, or gains and losses in money. Adding and subtracting integers follows specific rules: same signs add normally, different signs subtract and take the sign of the larger number. links for improve learning = https://www.youtube.com/watch?v=fw1kyM0F00Y",
+          subjectId: "math"
+
       },
       {
         id: "ratios-proportions",
@@ -123,7 +127,9 @@ export const TOPICS_BY_SUBJECT: Record<string, Record<number, Topic[]>> = {
         description: "Understanding relationships between quantities",
         classLevel: 6,
         notes:
-          "A ratio compares two quantities and can be written as a:b or a/b. Proportions are equations stating that two ratios are equal. For example, if 2:3 = 4:6, this is a proportion. Ratios and proportions are used in cooking recipes, maps, and solving problems involving similar figures. Cross-multiplication helps solve proportion problems.",
+          "these are  two quantities and can be written as a:b or a/b. Proportions are equations stating that two ratios are equal. For example, if 2:3 = 4:6, this is a proportion. Ratios and proportions are used in cooking recipes, maps, and solving problems involving similar figures. Cross-multiplication helps solve proportion problems.",
+          subjectId: "math"
+
       },
       {
         id: "percentages",
@@ -132,6 +138,7 @@ export const TOPICS_BY_SUBJECT: Record<string, Record<number, Topic[]>> = {
         classLevel: 6,
         notes:
           "Percent mean 'per hundred' and is represented by the % symbol. 50% means 50 out of 100, or 1/2, or 0.5. Percentages are used in discounts, taxes, tips, and statistics. To find a percentage of a number, multiply the number by the percentage in decimal form. For example, 25% of 80 = 0.25 × 80 = 20. links for increase understanding = https://www.youtube.com/watch?v=WIkfkR15ElM",
+          subjectId: "math"
       },
       {
         /* Added Rational Numbers topic to Class 6 Math */
@@ -150,6 +157,7 @@ export const TOPICS_BY_SUBJECT: Record<string, Record<number, Topic[]>> = {
         classLevel: 6,
         notes:
           "Algebra is a fundamental branch of mathematics that uses letters, called variables, to represent unknown numbers. This topic introduces the idea of using these variables to solve problems. Students learn to translate real-world word problems into algebraic expressions. They then solve simple, one-step equations to find the value of the variable. For instance, in the equation x+3=7, they'll learn that the variable x has a value of 4. This lays the essential groundwork for the more complex algebra and problem-solving skills they'll use throughout their academic careers.",
+          subjectId: "math"
       },
     ],
     7: [
