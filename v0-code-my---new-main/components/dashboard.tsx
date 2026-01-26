@@ -8,6 +8,7 @@ import { SUBJECTS_BY_CLASS } from "@/lib/education-data"
 import type { UserProfile } from "@/app/page"
 import type { Subject } from "@/lib/education-data"
 import { SubjectView } from "@/components/subject-view"
+import { useLanguage } from "@/lib/language-context"
 
 interface DashboardProps {
   userProfile: UserProfile
@@ -15,6 +16,7 @@ interface DashboardProps {
 
 export function Dashboard({ userProfile }: DashboardProps) {
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null)
+  const { language, setLanguage, t } = useLanguage()
 
   // Determine which subjects to show based on class level
   const subjectGroup = userProfile.classLevel <= 8 ? "6-8" : "9-12"
@@ -27,12 +29,27 @@ export function Dashboard({ userProfile }: DashboardProps) {
   return (
     <div className="min-h-screen p-4 pt-20">
       <div className="max-w-6xl mx-auto font-serif">
+        {/* Language Selector */}
+        <div className="absolute top-4 right-4 z-50 flex gap-2">
+          {(['en', 'hi', 'ta', 'te'] as const).map((lang) => (
+            <Button
+              key={lang}
+              onClick={() => setLanguage(lang)}
+              variant={language === lang ? "default" : "outline"}
+              className="rounded-2xl"
+              size="sm"
+            >
+              {lang.toUpperCase()}
+            </Button>
+          ))}
+        </div>
+
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-primary mb-4">Choose Your Subject</h1>
-          <p className="text-lg text-muted-foreground mb-2">Select a subject to start your learning journey</p>
+          <h1 className="text-4xl font-bold text-primary mb-4">{t("chooseSubject")}</h1>
+          <p className="text-lg text-muted-foreground mb-2">{t("selectSubject")}</p>
           <Badge variant="secondary" className="text-sm">
-            Class {userProfile.classLevel} • Age {userProfile.age}
+            {t("class")} {userProfile.classLevel} • {t("age")} {userProfile.age}
           </Badge>
         </div>
 
@@ -64,17 +81,17 @@ export function Dashboard({ userProfile }: DashboardProps) {
         <div className="mt-16 text-center">
           <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
             <CardContent className="p-8">
-              <h2 className="text-2xl font-bold text-primary mb-4">&quot;Your Learning Goal&quot;</h2>
+              <h2 className="text-2xl font-bold text-primary mb-4">&quot;{t("learningGoal")}&quot;</h2>
               <p className="text-lg text-muted-foreground italic rounded-2xl">"{userProfile.reason}"</p>
               <div className="mt-6 flex justify-center gap-4">
                 <Badge variant="outline" className="text-sm px-4 py-2 rounded-2xl border-foreground text-left font-serif shadow-xl">
-                  {"📚 Interactive Notes will help in studies"}    
+                  {t("interactiveNotes")}    
                 </Badge>
                 <Badge variant="outline" className="text-sm px-4 py-2 rounded-2xl shadow-xl border-foreground">
-                  🧠 Smart Quizzes will improve in question solving     
+                  {t("smartQuizzes")}     
                 </Badge>
                 <Badge variant="outline" className="text-sm px-4 py-2 rounded-4xl shadow-xl border-foreground">
-                  🎮 Fun Games 
+                  {t("funGames")} 
                 </Badge>
               </div>
             </CardContent>
