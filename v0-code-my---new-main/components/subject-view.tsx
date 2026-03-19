@@ -11,6 +11,7 @@ import type { UserProfile } from "@/app/page"
 import { TopicView } from "@/components/topic-view"
 import { QuizView } from "@/components/quiz-view"
 import { GamesView } from "@/components/games-view"
+import { useLanguage } from "@/lib/language-context"
 
 interface SubjectViewProps {
   subject: Subject
@@ -23,6 +24,8 @@ type ViewMode = "topics" | "quiz" | "games"
 export function SubjectView({ subject, userProfile, onBack }: SubjectViewProps) {
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null)
   const [viewMode, setViewMode] = useState<ViewMode>("topics")
+
+  const { t } = useLanguage()
 
   // Get topics for this subject and class level
   const subjectTopics = TOPICS_BY_SUBJECT[subject.id]?.[userProfile.classLevel] || []
@@ -64,7 +67,7 @@ export function SubjectView({ subject, userProfile, onBack }: SubjectViewProps) 
             className="flex items-center gap-2"
           >
             <BookOpen className="h-4 w-4" />
-            Topics & Notes
+            {t("topicsNotes")}
           </Button>
           <Button
             variant={viewMode === "quiz" ? "default" : "outline"}
@@ -72,7 +75,7 @@ export function SubjectView({ subject, userProfile, onBack }: SubjectViewProps) 
             className="flex items-center gap-2"
           >
             <Brain className="h-4 w-4" />
-            See What You've Learnt
+            {t("seeWhatYouveLearnt")}
           </Button>
           <Button
             variant={viewMode === "games" ? "default" : "outline"}
@@ -80,7 +83,7 @@ export function SubjectView({ subject, userProfile, onBack }: SubjectViewProps) 
             className="flex items-center gap-2"
           >
             <Gamepad2 className="h-4 w-4" />
-            Time to Play
+            {t("timeToPlay")}
           </Button>
         </div>
 
@@ -89,7 +92,7 @@ export function SubjectView({ subject, userProfile, onBack }: SubjectViewProps) 
           <>
             <div className="mb-6">
               <h2 className="text-2xl font-bold mb-2">Topics for Class {userProfile.classLevel}</h2>
-              <p className="text-muted-foreground">Click on any topic to view detailed notes and explanations</p>
+              <p className="text-muted-foreground">{t("clickAnyTopic")}</p>
             </div>
 
             {subjectTopics.length > 0 ? (

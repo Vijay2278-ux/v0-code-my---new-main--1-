@@ -9,6 +9,7 @@ import type { UserProfile } from "@/app/page"
 import type { Subject } from "@/lib/education-data"
 import { SubjectView } from "@/components/subject-view"
 import { useLanguage } from "@/lib/language-context"
+import TranslateView from "@/components/translate-view"
 
 interface DashboardProps {
   userProfile: UserProfile
@@ -51,6 +52,9 @@ export function Dashboard({ userProfile }: DashboardProps) {
           <Badge variant="secondary" className="text-sm">
             {t("class")} {userProfile.classLevel} • {t("age")} {userProfile.age}
           </Badge>
+
+          {/* Inline translate demo — original language is synced with the global language selection */}
+          <TranslateView />
         </div>
 
         {/* Subjects Grid */}

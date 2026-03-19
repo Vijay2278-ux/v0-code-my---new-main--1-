@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, BookOpen, Lightbulb } from "lucide-react"
 import Image from "next/image"
+import { useLanguage } from "@/lib/language-context"
 import type { Topic } from "@/lib/education-data"
 
 interface TopicViewProps {
@@ -13,6 +14,8 @@ interface TopicViewProps {
 }
 
 export function TopicView({ topic, onBack }: TopicViewProps) {
+  const { t } = useLanguage()
+
   return (
     <div className="min-h-screen p-4 pt-20">
       <div className="max-w-4xl mx-auto font-serif rounded-2xl">
@@ -131,7 +134,7 @@ export function TopicView({ topic, onBack }: TopicViewProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BookOpen className="h-5 w-5" />
-              Quick Review Notes
+              {t("quickReviewNotes")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -146,20 +149,20 @@ export function TopicView({ topic, onBack }: TopicViewProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Lightbulb className="h-5 w-5" />
-              Key Points to Remember
+              {t("keyPointsToRemember")}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
-                <h4 className="font-semibold text-primary mb-2">💡 Quick Tip</h4>
+                <h4 className="font-semibold text-primary mb-2">{t("quickTip")}</h4>
                 <p className="text-sm">
-                  Practice this topic regularly to build strong fundamentals for advanced concepts.
+                  {t("practiceTip", { topic: topic.title })}
                 </p>
               </div>
               <div className="bg-secondary/10 p-4 rounded-lg border border-secondary/20">
-                <h4 className="font-semibold text-secondary mb-2">🎯 Focus Area</h4>
-                <p className="text-sm">Understanding this concept will help you excel in related topics and exams.</p>
+                <h4 className="font-semibold text-secondary mb-2">{t("focusArea")}</h4>
+                <p className="text-sm">{t("focusAreaBody")}</p>
               </div>
             </div>
           </CardContent>
@@ -168,10 +171,10 @@ export function TopicView({ topic, onBack }: TopicViewProps) {
         {/* Action Buttons */}
         <div className="flex gap-4 justify-center">
           <Button size="lg" className="animate-pulse-glow">
-            Take Practice Quiz
+            {t("takePracticeQuiz")}
           </Button>
           <Button variant="outline" size="lg">
-            View Related Topics
+            {t("viewRelatedTopics")}
           </Button>
         </div>
       </div>

@@ -55,7 +55,7 @@ export function QuizView({ subject, userProfile, onBack }: QuizViewProps) {
           correctAnswer: 1,
           explanation: "15% of 200 = (15/100) × 200 = 30",
           topicId: "percentages",
-          difficulty: "medium",
+          difficulty: "easy",
         },
         {
           id: "math-generic-2",
