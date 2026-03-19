@@ -9,26 +9,42 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing parameters" }, { status: 400 })
     }
 
-    // Using LibreTranslate public demo endpoint for quick local testing
-    const providerUrl = "https://libretranslate.de/translate"
+    const inputText = String(q).trim()
+    const sourceLang = source || "en"
+    const targetLang = String(target).trim()
 
-    const resp = await fetch(providerUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ q, source: source || "auto", target, format: "text" }),
-    })
-
-    const data = await resp.json()
-    if (!resp.ok) {
-      return NextResponse.json({ error: data.error || "Provider error" }, { status: 502 })
+    if (!inputText) {
+      return NextResponse.json({ error: "Text is required" }, { status: 400 })
     }
 
-    // LibreTranslate typically returns { translatedText: "..." }
-    const translatedText = data.translatedText || data.translated_text || data.translated || ""
+    if (sourceLang === targetLang) {
+      return NextResponse.json({ translatedText: inputText })
+    }
+
+    const providerUrl = new URL("https://api.mymemory.translated.net/get")
+    providerUrl.searchParams.set("q", inputText)
+    providerUrl.searchParams.set("langpair", `${sourceLang}|${targetLang}`)
+
+    const resp = await fetch(providerUrl, {
+      headers: {
+        Accept: "application/json",
+      },
+      next: { revalidate: 0 },
+    })
+
+    if (!resp.ok) {
+      return NextResponse.json({ error: "Translation provider is unavailable" }, { status: 502 })
+    }
+
+    const data = await resp.json()
+    const translatedText = data?.responseData?.translatedText?.trim()
+
+    if (!translatedText) {
+      return NextResponse.json({ error: "No translation returned" }, { status: 502 })
+    }
 
     return NextResponse.json({ translatedText })
   } catch (err) {
-    // log server-side error
     console.error("/api/translate error:", err)
     return NextResponse.json({ error: "Server error" }, { status: 500 })
   }

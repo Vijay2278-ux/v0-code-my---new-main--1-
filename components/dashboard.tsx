@@ -9,7 +9,6 @@ import type { UserProfile } from "@/app/page"
 import type { Subject } from "@/lib/education-data"
 import { SubjectView } from "@/components/subject-view"
 import { useLanguage } from "@/lib/language-context"
-import TranslateView from "@/components/translate-view"
 
 interface DashboardProps {
   userProfile: UserProfile
@@ -19,7 +18,6 @@ export function Dashboard({ userProfile }: DashboardProps) {
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null)
   const { language, setLanguage, t } = useLanguage()
 
-  // Determine which subjects to show based on class level
   const subjectGroup = userProfile.classLevel <= 8 ? "6-8" : "9-12"
   const availableSubjects = SUBJECTS_BY_CLASS[subjectGroup]
 
@@ -30,9 +28,8 @@ export function Dashboard({ userProfile }: DashboardProps) {
   return (
     <div className="min-h-screen p-4 pt-20">
       <div className="max-w-6xl mx-auto font-serif">
-        {/* Language Selector */}
         <div className="absolute top-4 right-4 z-50 flex gap-2">
-          {(['en', 'hi', 'ta', 'te'] as const).map((lang) => (
+          {(["en", "hi", "ta", "te"] as const).map((lang) => (
             <Button
               key={lang}
               onClick={() => setLanguage(lang)}
@@ -45,19 +42,14 @@ export function Dashboard({ userProfile }: DashboardProps) {
           ))}
         </div>
 
-        {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-primary mb-4">{t("chooseSubject")}</h1>
           <p className="text-lg text-muted-foreground mb-2">{t("selectSubject")}</p>
           <Badge variant="secondary" className="text-sm">
             {t("class")} {userProfile.classLevel} • {t("age")} {userProfile.age}
           </Badge>
-
-          {/* Inline translate demo — original language is synced with the global language selection */}
-          <TranslateView />
         </div>
 
-        {/* Subjects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {availableSubjects.map((subject) => (
             <Card
@@ -73,7 +65,10 @@ export function Dashboard({ userProfile }: DashboardProps) {
                 <CardDescription className="text-base">{subject.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button className="w-full group-hover:animate-pulse-glow rounded-2xl shadow-xl border-card-foreground border-solid" size="lg">
+                <Button
+                  className="w-full group-hover:animate-pulse-glow rounded-2xl shadow-xl border-card-foreground border-solid"
+                  size="lg"
+                >
                   Start Learning
                 </Button>
               </CardContent>
@@ -81,7 +76,6 @@ export function Dashboard({ userProfile }: DashboardProps) {
           ))}
         </div>
 
-        {/* Motivational Section */}
         <div className="mt-16 text-center">
           <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
             <CardContent className="p-8">
@@ -89,13 +83,13 @@ export function Dashboard({ userProfile }: DashboardProps) {
               <p className="text-lg text-muted-foreground italic rounded-2xl">"{userProfile.reason}"</p>
               <div className="mt-6 flex justify-center gap-4">
                 <Badge variant="outline" className="text-sm px-4 py-2 rounded-2xl border-foreground text-left font-serif shadow-xl">
-                  {t("interactiveNotes")}    
+                  {t("interactiveNotes")}
                 </Badge>
                 <Badge variant="outline" className="text-sm px-4 py-2 rounded-2xl shadow-xl border-foreground">
-                  {t("smartQuizzes")}     
+                  {t("smartQuizzes")}
                 </Badge>
                 <Badge variant="outline" className="text-sm px-4 py-2 rounded-4xl shadow-xl border-foreground">
-                  {t("funGames")} 
+                  {t("funGames")}
                 </Badge>
               </div>
             </CardContent>
