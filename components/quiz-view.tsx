@@ -146,6 +146,26 @@ export function QuizView({ subject, userProfile, onBack }: QuizViewProps) {
   const correctAnswers = quizResults.filter((r) => r.isCorrect).length
   const scorePercentage = Math.round((correctAnswers / questions.length) * 100)
 
+  const getOptionClasses = (index: number) => {
+    const isSelected = selectedAnswer === index
+    const isCorrect = currentQuestion.correctAnswer === index
+    const isWrongSelection = showResult && isSelected && !isCorrect
+
+    if (showResult && isCorrect) {
+      return "border-emerald-500 bg-emerald-50 text-emerald-900 hover:bg-emerald-50"
+    }
+
+    if (isWrongSelection) {
+      return "border-rose-500 bg-rose-50 text-rose-900 hover:bg-rose-50"
+    }
+
+    if (isSelected) {
+      return "border-primary bg-primary/12 text-primary ring-2 ring-primary/30 hover:bg-primary/16"
+    }
+
+    return "border-border bg-white text-slate-700 hover:bg-slate-50"
+  }
+
   if (questions.length === 0) {
     return (
       <div className="min-h-screen p-4 pt-20">
@@ -244,13 +264,25 @@ export function QuizView({ subject, userProfile, onBack }: QuizViewProps) {
               {currentQuestion.options.map((option, index) => (
                 <Button
                   key={index}
-                  variant={selectedAnswer === index ? "default" : "outline"}
-                  className="w-full text-left justify-start p-4 h-auto rounded-4xl shadow-xl border-foreground"
+                  type="button"
+                  variant="outline"
+                  className={`w-full justify-start gap-4 p-4 h-auto rounded-[1.75rem] border-2 text-left shadow-sm transition-all ${getOptionClasses(index)}`}
                   onClick={() => handleAnswerSelect(index)}
                   disabled={showResult}
                 >
-                  <span className="mr-3 font-bold">{String.fromCharCode(65 + index)}.</span>
-                  {option}
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-current/20 bg-white/80 font-bold">
+                    {String.fromCharCode(65 + index)}
+                  </span>
+                  <span className="flex-1 whitespace-normal">{option}</span>
+                  {selectedAnswer === index && !showResult ? (
+                    <span className="text-xs font-semibold uppercase tracking-wide">Selected</span>
+                  ) : null}
+                  {showResult && currentQuestion.correctAnswer === index ? (
+                    <CheckCircle className="h-5 w-5 shrink-0 text-emerald-600" />
+                  ) : null}
+                  {showResult && selectedAnswer === index && currentQuestion.correctAnswer !== index ? (
+                    <XCircle className="h-5 w-5 shrink-0 text-rose-600" />
+                  ) : null}
                 </Button>
               ))}
             </div>
