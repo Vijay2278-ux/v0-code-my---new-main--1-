@@ -113,7 +113,11 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
                     <RadioGroupItem value={classNum.toString()} id={`class-${classNum}`} />
                             <Label
                       htmlFor={`class-${classNum}`}
-                      className="flex-1 p-4 border cursor-pointer hover:bg-accent transition-colors text-center font-medium rounded-2xl border-foreground shadow-xl"
+                      className={`flex-1 p-4 border cursor-pointer transition-all duration-200 text-center font-medium rounded-2xl shadow-xl ${
+                        formData.classLevel === classNum.toString()
+                          ? "bg-primary text-primary-foreground border-primary shadow-lg scale-105"
+                          : "border-foreground hover:bg-accent"
+                      }`}
                     >
                       {t("class")} {classNum}
                     </Label>
