@@ -166,15 +166,24 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     background:
-      radial-gradient(circle at top left, rgba(96, 165, 250, 0.26), transparent 28%),
-      radial-gradient(circle at top right, rgba(245, 158, 11, 0.18), transparent 24%),
-      linear-gradient(180deg, #f8fbff 0%, #eef4fb 52%, #f9f5eb 100%);
+      radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 24%, transparent), transparent 28%),
+      radial-gradient(circle at top right, color-mix(in srgb, var(--color-secondary) 18%, transparent), transparent 24%),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-background) 92%, white) 0%,
+        color-mix(in srgb, var(--color-background) 98%, var(--color-accent)) 52%,
+        color-mix(in srgb, var(--color-background) 90%, var(--color-secondary)) 100%
+      );
     min-height: 100vh;
     background-attachment: fixed;
+    transition:
+      background-color 200ms ease,
+      background-image 200ms ease,
+      color 200ms ease;
   }
 
   ::selection {
-    background: rgba(29, 78, 216, 0.18);
+    background: color-mix(in srgb, var(--color-primary) 24%, transparent);
     color: var(--color-foreground);
   }
 }

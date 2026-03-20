@@ -10,7 +10,7 @@ export function WelcomeHeader({ userName }: WelcomeHeaderProps) {
   return (
     <div className="fixed top-4 left-4 z-50">
       {userName && (
-        <div className="bg-white/90 backdrop-blur-sm px-4 py-2 shadow-lg border rounded-2xl border-foreground border-dashed">
+        <div className="rounded-2xl border border-border/80 border-dashed bg-card/90 px-4 py-2 shadow-lg backdrop-blur-sm">
           <p className="text-sm font-medium text-primary">
             Welcome, <span className="font-bold">{userName}</span>! 👋
           </p>

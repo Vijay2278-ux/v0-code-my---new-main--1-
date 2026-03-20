@@ -95,22 +95,22 @@ export default function TranslateView() {
   }
 
   return (
-    <Card className="mt-8 overflow-hidden border-primary/15 bg-white/75 text-left shadow-[0_24px_60px_-32px_rgba(29,78,216,0.35)] backdrop-blur-sm">
-      <CardHeader className="border-b border-primary/10 bg-gradient-to-r from-primary/10 via-white/80 to-secondary/10">
+    <Card className="mt-8 overflow-hidden border-primary/15 bg-card/90 text-left shadow-[0_24px_60px_-32px_rgba(29,78,216,0.35)] backdrop-blur-sm">
+      <CardHeader className="border-b border-primary/10 bg-gradient-to-r from-primary/10 via-card/95 to-secondary/10">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2">
-            <Badge variant="outline" className="rounded-full border-primary/20 bg-white/70 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-primary">
+            <Badge variant="outline" className="rounded-full border-primary/20 bg-card/80 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-primary">
               <Languages className="size-3.5" />
               {t("translateTitle")}
             </Badge>
-            <CardTitle className="text-2xl font-semibold text-slate-900">
+            <CardTitle className="text-2xl font-semibold text-foreground">
               Fast classroom translation
             </CardTitle>
-            <p className="max-w-2xl text-sm leading-6 text-slate-600">
+            <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
               Convert short notes, questions, and keywords between English, Hindi, Tamil, and Telugu without leaving the dashboard.
             </p>
           </div>
-          <div className="flex items-center gap-2 rounded-full border border-primary/15 bg-white/80 px-4 py-2 text-xs font-medium text-slate-600 shadow-sm">
+          <div className="flex items-center gap-2 rounded-full border border-primary/15 bg-card/80 px-4 py-2 text-xs font-medium text-muted-foreground shadow-sm">
             <Sparkles className="size-4 text-secondary" />
             Supports quick study phrases
           </div>
@@ -119,11 +119,11 @@ export default function TranslateView() {
       <CardContent className="space-y-6 p-6">
         <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-end">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-700">{t("originalLang")}</label>
+            <label className="text-sm font-medium text-foreground">{t("originalLang")}</label>
             <select
               value={originalLang}
               onChange={(e) => setOriginalLang(e.target.value as typeof language)}
-              className="h-11 w-full rounded-2xl border border-primary/15 bg-white px-4 text-sm font-medium text-slate-700 shadow-sm outline-none transition focus:border-primary/40"
+              className="h-11 w-full rounded-2xl border border-primary/15 bg-background px-4 text-sm font-medium text-foreground shadow-sm outline-none transition focus:border-primary/40"
             >
               {LANGUAGE_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -137,7 +137,7 @@ export default function TranslateView() {
             type="button"
             variant="outline"
             size="icon"
-            className="mx-auto size-11 rounded-full border-primary/20 bg-white text-primary shadow-sm"
+            className="mx-auto size-11 rounded-full border-primary/20 bg-background text-primary shadow-sm"
             onClick={handleSwap}
             disabled={!translatedText}
           >
@@ -145,11 +145,11 @@ export default function TranslateView() {
           </Button>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-700">{t("targetLang")}</label>
+            <label className="text-sm font-medium text-foreground">{t("targetLang")}</label>
             <select
               value={targetLang}
               onChange={(e) => setTargetLang(e.target.value as typeof targetLang)}
-              className="h-11 w-full rounded-2xl border border-primary/15 bg-white px-4 text-sm font-medium text-slate-700 shadow-sm outline-none transition focus:border-primary/40"
+              className="h-11 w-full rounded-2xl border border-primary/15 bg-background px-4 text-sm font-medium text-foreground shadow-sm outline-none transition focus:border-primary/40"
             >
               {LANGUAGE_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -161,33 +161,33 @@ export default function TranslateView() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
-          <div className="space-y-3 rounded-[1.5rem] border border-primary/10 bg-slate-50/80 p-4 shadow-inner">
+          <div className="space-y-3 rounded-[1.5rem] border border-primary/10 bg-muted/60 p-4 shadow-inner">
             <div className="flex items-center justify-between">
-              <label className="text-sm font-semibold text-slate-800">{t("enterOriginal")}</label>
-              <span className="text-xs text-slate-500">{originalText.trim().length} characters</span>
+              <label className="text-sm font-semibold text-foreground">{t("enterOriginal")}</label>
+              <span className="text-xs text-muted-foreground">{originalText.trim().length} characters</span>
             </div>
             <Textarea
               value={originalText}
               onChange={(e) => setOriginalText(e.target.value)}
               placeholder={t("enterOriginalPlaceholder")}
-              className="min-h-40 rounded-2xl border-primary/10 bg-white/90 p-4 text-base leading-7 shadow-none"
+              className="min-h-40 rounded-2xl border-primary/10 bg-background p-4 text-base leading-7 shadow-none"
             />
           </div>
 
-          <div className="space-y-3 rounded-[1.5rem] border border-secondary/20 bg-amber-50/70 p-4 shadow-inner">
+          <div className="space-y-3 rounded-[1.5rem] border border-secondary/20 bg-secondary/10 p-4 shadow-inner">
             <div className="flex items-center justify-between">
-              <label className="text-sm font-semibold text-slate-800">{t("translate")}</label>
+              <label className="text-sm font-semibold text-foreground">{t("translate")}</label>
               {translatedText ? (
                 <span className="text-xs text-emerald-700">Ready to copy</span>
               ) : (
-                <span className="text-xs text-slate-500">Translation appears here</span>
+                <span className="text-xs text-muted-foreground">Translation appears here</span>
               )}
             </div>
             <Textarea
               value={translatedText}
               readOnly
               placeholder="Your translated text will appear here..."
-              className="min-h-40 rounded-2xl border-secondary/20 bg-white/90 p-4 text-base leading-7 shadow-none"
+              className="min-h-40 rounded-2xl border-secondary/20 bg-background p-4 text-base leading-7 shadow-none"
             />
           </div>
         </div>
@@ -201,21 +201,21 @@ export default function TranslateView() {
             >
               {loading ? t("translating") : t("translate")}
             </Button>
-            <Button variant="outline" onClick={handleClear} className="rounded-full px-6 bg-white">
+            <Button variant="outline" onClick={handleClear} className="rounded-full px-6 bg-background">
               {t("clear")}
             </Button>
             <Button
               variant="outline"
               onClick={handleCopy}
               disabled={!translatedText}
-              className="rounded-full px-6 bg-white"
+              className="rounded-full px-6 bg-background"
             >
               {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
               {copied ? "Copied" : t("copy")}
             </Button>
           </div>
 
-          <div className="text-sm text-slate-500">
+          <div className="text-sm text-muted-foreground">
             Best for short classroom text and study notes.
           </div>
         </div>

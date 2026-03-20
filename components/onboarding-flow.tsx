@@ -66,7 +66,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 font-serif">
-      <div className="w-full max-w-2xl rounded-[2rem] border border-white/40 bg-white/25 p-5 shadow-[0_24px_80px_-32px_rgba(15,23,42,0.45)] backdrop-blur-sm">
+      <div className="w-full max-w-2xl rounded-[2rem] border border-border/70 bg-card/45 p-5 shadow-[0_24px_80px_-32px_rgba(15,23,42,0.45)] backdrop-blur-sm">
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
@@ -78,7 +78,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
           <Progress value={progress} className="h-2" />
         </div>
 
-        <Card className="animate-bounce-gentle rounded-[1.75rem] border-white/50 bg-card/95 shadow-[0_24px_60px_-30px_rgba(29,78,216,0.35)]">
+        <Card className="animate-bounce-gentle rounded-[1.75rem] border-border/80 bg-card/95 shadow-[0_24px_60px_-30px_rgba(29,78,216,0.35)]">
           <CardHeader className="text-center">
             <div className="text-6xl mb-4">
               {currentStep === 1 && "🎓"}

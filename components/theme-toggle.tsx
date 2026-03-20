@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -16,15 +16,17 @@ export function ThemeToggle() {
     return null
   }
 
+  const isDark = resolvedTheme === "dark"
+
   return (
     <Button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       variant="outline"
       className="rounded-2xl"
       size="sm"
-      title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      title={`Switch to ${isDark ? "light" : "dark"} mode`}
     >
-      {theme === "dark" ? "☀️" : "🌙"}
+      {isDark ? "☀️" : "🌙"}
     </Button>
   )
 }
