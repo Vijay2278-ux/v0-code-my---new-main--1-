@@ -16,7 +16,7 @@ interface DashboardProps {
 
 export function Dashboard({ userProfile }: DashboardProps) {
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null)
-  const { language, setLanguage, t } = useLanguage()
+  const { t } = useLanguage()
 
   const subjectGroup = userProfile.classLevel <= 8 ? "6-8" : "9-12"
   const availableSubjects = SUBJECTS_BY_CLASS[subjectGroup]
@@ -28,20 +28,6 @@ export function Dashboard({ userProfile }: DashboardProps) {
   return (
     <div className="min-h-screen p-4 pt-20">
       <div className="max-w-6xl mx-auto font-serif">
-        <div className="absolute top-4 right-4 z-50 flex gap-2">
-          {(["en", "hi", "ta", "te"] as const).map((lang) => (
-            <Button
-              key={lang}
-              onClick={() => setLanguage(lang)}
-              variant={language === lang ? "default" : "outline"}
-              className="rounded-2xl"
-              size="sm"
-            >
-              {lang.toUpperCase()}
-            </Button>
-          ))}
-        </div>
-
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-primary mb-4">{t("chooseSubject")}</h1>
           <p className="text-lg text-muted-foreground mb-2">{t("selectSubject")}</p>

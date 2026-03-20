@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { WelcomeHeader } from "@/components/welcome-header"
+import { WelcomeHeader, TopRightHeader } from "@/components/welcome-header"
 import { OnboardingFlow } from "@/components/onboarding-flow"
 import { Dashboard } from "@/components/dashboard"
 
@@ -22,6 +22,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen relative">
+      <TopRightHeader />
       <WelcomeHeader userName={userProfile?.name} />
 
       {!userProfile?.completedOnboarding ? (

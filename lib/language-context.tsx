@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 import { TRANSLATIONS } from "./trans"
 
 type LanguageCode = keyof typeof TRANSLATIONS
@@ -14,7 +14,22 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<LanguageCode>("en")
+  const [language, setLanguageState] = useState<LanguageCode>("en")
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+    // Load language from localStorage on mount
+    const savedLanguage = localStorage.getItem("preferredLanguage") as LanguageCode | null
+    if (savedLanguage && (["en", "hi", "ta", "te"] as const).includes(savedLanguage)) {
+      setLanguageState(savedLanguage)
+    }
+  }, [])
+
+  const setLanguage = (lang: LanguageCode) => {
+    setLanguageState(lang)
+    localStorage.setItem("preferredLanguage", lang)
+  }
 
   const t = (key: keyof typeof TRANSLATIONS.en, vars?: Record<string, string | number>): string => {
     const base = TRANSLATIONS[language][key as keyof (typeof TRANSLATIONS)[LanguageCode]] || TRANSLATIONS.en[key]
